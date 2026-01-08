@@ -11,10 +11,17 @@ const PainPoints = () => {
   ];
 
   return (
-    <section className="py-24 px-4 lg:px-8 bg-card">
-      <div className="container max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+    <section className="relative py-24 px-4 lg:px-8 overflow-hidden">
+      <div
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: 'url("/XAc3zRRhMEF4Z3ibGb0FY.png")',
+        }}
+      />
+
+      <div className="container max-w-4xl mx-auto relative z-10">
+        <div className="bg-card border border-border shadow-soft rounded-xl p-8 mb-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
             Узнаешь себя?
           </h2>
           <p className="text-muted-foreground text-lg">
@@ -26,7 +33,7 @@ const PainPoints = () => {
           {painPoints.map((point, index) => (
             <div
               key={index}
-              className="flex items-start gap-4 p-5 rounded-xl bg-secondary/30 hover:bg-secondary/50 transition-all duration-300 border border-transparent hover:border-border group"
+              className="flex items-start gap-4 p-5 rounded-xl bg-card border border-border shadow-soft hover:shadow-glow transition-all duration-300 group"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="w-8 h-8 rounded-lg bg-destructive/10 flex items-center justify-center flex-shrink-0 group-hover:bg-destructive/20 transition-colors">
@@ -37,7 +44,7 @@ const PainPoints = () => {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="mt-4 bg-card border border-border shadow-soft rounded-xl p-8 text-center">
           <p className="text-lg md:text-xl font-medium text-foreground max-w-2xl mx-auto leading-relaxed">
             Если узнаёшь себя хотя бы в двух пунктах - тебе нужна не мотивация, а{" "}
             <span className="gradient-text font-bold">внешний контур управления</span>.
