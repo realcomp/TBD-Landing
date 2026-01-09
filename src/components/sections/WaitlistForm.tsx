@@ -3,16 +3,44 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Check, Mail, Shield, Gift, MessageSquare } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/lib/supabase";
 
 const WaitlistForm = () => {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    if (!email) return;
+
+    setIsLoading(true);
+    try {
+      const now = new Date();
+      const date = now.toISOString().split('T')[0];
+      const time = now.toTimeString().split(' ')[0];
+
+      const { error } = await supabase
+        .from('waiting_list')
+        .insert([
+          {
+            email,
+            date,
+            time,
+            invited: false,
+            link: document.referrer || 'direct'
+          }
+        ]);
+
+      if (error) throw error;
+
       setIsSubmitted(true);
       toast.success("Отлично! Ты в списке ожидания.");
+    } catch (error: any) {
+      console.error("Error submitting to waitlist:", error);
+      toast.error(`Ошибка: ${error.message || "Произошла ошибка при отправке"}`);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -62,10 +90,16 @@ const WaitlistForm = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     className="pl-12 h-14 text-base bg-secondary/50 border-border focus:border-primary"
                     required
+                    disabled={isLoading}
                   />
                 </div>
-                <Button type="submit" size="lg" className="h-14 px-8 text-base shadow-glow">
-                  Вступить в лист ожидания
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="h-14 px-8 text-base shadow-glow"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Отправка..." : "Вступить в лист ожидания"}
                 </Button>
               </div>
               <p className="text-sm text-muted-foreground text-center">
