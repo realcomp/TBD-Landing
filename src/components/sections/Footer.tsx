@@ -9,7 +9,7 @@ const Footer = () => {
           </div>
 
           <p className="text-muted-foreground text-sm text-center md:text-right">
-            © {new Date().getFullYear()} DTG Studio. Система для спокойной головы.
+            © {new Date().getFullYear()} DTG Studio.
           </p>
         </div>
       </div>
