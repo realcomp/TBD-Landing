@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import crypto from 'crypto';
+import { Resend } from 'resend';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,6 +24,8 @@ function loadEnv() {
 }
 
 loadEnv();
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const supabaseUrl = process.env.VITE_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -126,33 +129,23 @@ const server = http.createServer(async (req, res) => {
                         <p>Если ты не оставлял этот email - просто проигнорируй письмо.</p>
                     `;
 
-                    // Helper to send email via Resend (assuming RESEND_API_KEY is in env)
-                    const RESEND_API_KEY = process.env.RESEND_API_KEY;
-                    if (!RESEND_API_KEY) {
+                    if (!process.env.RESEND_API_KEY) {
                         console.error("RESEND_API_KEY is missing. Email not sent.");
                         return;
                     }
 
                     try {
-                        const response = await fetch('https://api.resend.com/emails', {
-                            method: 'POST',
-                            headers: {
-                                'Authorization': `Bearer ${RESEND_API_KEY}`,
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                from: 'DTG Studio <no-reply@dtg.sportomatics.com>',
-                                to: [email],
-                                subject: subject,
-                                html: html
-                            })
+                        const { error } = await resend.emails.send({
+                            from: 'DTG Studio <no-reply@dtg.sportomatics.com>',
+                            to: [email],
+                            subject: subject,
+                            html: html
                         });
-                        if (!response.ok) {
-                            const errData = await response.json();
-                            console.error("Resend API error:", errData);
+                        if (error) {
+                            console.error("Resend error:", error);
                         }
                     } catch (err) {
-                        console.error("Failed to send email via Resend:", err);
+                        console.error("Failed to send email via Resend SDK:", err);
                     }
                 }
 
