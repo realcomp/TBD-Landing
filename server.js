@@ -137,10 +137,9 @@ const server = http.createServer(async (req, res) => {
             }
 
             if (entry.status === 'confirmed') {
-                return sendHtml(
-                    "Этот email уже подтверждён",
-                    "Этот адрес уже находится в листе ожидания DTG Studio. Ничего делать не нужно."
-                );
+                res.writeHead(302, { Location: 'https://dtg.sportomatics.com/inbox/' });
+                res.end();
+                return;
             }
 
             if (entry.status === 'pending') {
@@ -157,10 +156,9 @@ const server = http.createServer(async (req, res) => {
                     throw updateError;
                 }
 
-                return sendHtml(
-                    "Готово, ты в листе ожидания DTG Studio",
-                    "Мы напишем на этот email, когда сервис будет готов к запуску. Спасибо, что записался."
-                );
+                res.writeHead(302, { Location: 'https://dtg.sportomatics.com/inbox/' });
+                res.end();
+                return;
             }
 
             // Fallback for unexpected status

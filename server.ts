@@ -104,10 +104,7 @@ const server = Bun.serve({
                 }
 
                 if (entry.status === 'confirmed') {
-                    return getHtmlResponse(
-                        "Этот email уже подтверждён",
-                        "Этот адрес уже находится в листе ожидания DTG Studio. Ничего делать не нужно."
-                    );
+                    return Response.redirect("https://dtg.sportomatics.com/inbox/", 302);
                 }
 
                 if (entry.status === 'pending') {
@@ -124,10 +121,7 @@ const server = Bun.serve({
                         throw updateError;
                     }
 
-                    return getHtmlResponse(
-                        "Готово, ты в листе ожидания DTG Studio",
-                        "Мы напишем на этот email, когда сервис будет готов к запуску. Спасибо, что записался."
-                    );
+                    return Response.redirect("https://dtg.sportomatics.com/inbox/", 302);
                 }
 
                 return getHtmlResponse(
