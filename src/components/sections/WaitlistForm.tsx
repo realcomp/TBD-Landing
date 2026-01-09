@@ -2,43 +2,74 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Check, Mail, Shield, Gift, MessageSquare } from "lucide-react";
-import { toast } from "sonner";
-import { supabase } from "@/lib/supabase";
 
 const WaitlistForm = () => {
   const [email, setEmail] = useState("");
+  const [policyAgree, setPolicyAgree] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const validateEmail = (email: string) => {
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail) {
+      return "Email не может быть пустым";
+    }
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!regex.test(trimmedEmail)) {
+      return "Пожалуйста, введите корректный email";
+    }
+    return "";
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
+    setError("");
+
+    const emailError = validateEmail(email);
+    if (emailError) {
+      setError(emailError);
+      return;
+    }
 
     setIsLoading(true);
     try {
-      const now = new Date();
-      const date = now.toISOString().split('T')[0];
-      const time = now.toTimeString().split(' ')[0];
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email.trim(),
+          policyAgree: policyAgree,
+        }),
+      });
 
-      const { error } = await supabase
-        .from('waiting_list')
-        .insert([
-          {
-            email,
-            date,
-            time,
-            invited: false,
-            link: document.referrer || 'direct'
-          }
-        ]);
-
-      if (error) throw error;
-
-      setIsSubmitted(true);
-      toast.success("Отлично! Ты в списке ожидания.");
-    } catch (error: any) {
-      console.error("Error submitting to waitlist:", error);
-      toast.error(`Ошибка: ${error.message || "Произошла ошибка при отправке"}`);
+      // We interpret any 2xx response as success according to requirements
+      if (response.ok) {
+        setIsSubmitted(true);
+        setEmail("");
+      } else {
+        // Even if server returns error, we follow the requirement:
+        // "не показывай пользователю разные сообщения для разных ошибок на сервере. 
+        // Любой успешный ответ сервера (2xx) трактуем как "сообщение отправлено"."
+        // Wait, if it is NOT 2xx, should I still show success? 
+        // "Текст сообщения, например: "Если это твой email - проверь почту..."
+        // The instructions say: "если код 2xx - очисти поле email и покажи пользователю одно и то же сообщение об успехе"
+        // It doesn't explicitly say what to do if NOT 2xx. 
+        // Usually, if it's a server error, we might want to show a generic error, 
+        // but the prompt says "не показывай пользователю разные сообщения для разных ошибок на сервере".
+        // Let's stick to showing success only on ok, and maybe a generic error otherwise if we want to be safe, 
+        // or just treat it as "sent" if we want to obfuscate? 
+        // Re-reading: "Любой успешный ответ сервера (2xx) трактуем как 'сообщение отправлено'".
+        // This implies if it's NOT 2xx, it's not "sent".
+        throw new Error("Failed to submit");
+      }
+    } catch (err) {
+      console.error("Error submitting to waitlist:", err);
+      // Requirement: "не показывай пользователю разные сообщения для разных ошибок на сервере"
+      // I'll show a generic error if it really fails, but keep it simple.
+      setError("Произошла ошибка при отправке. Попробуйте позже.");
     } finally {
       setIsLoading(false);
     }
@@ -87,12 +118,31 @@ const WaitlistForm = () => {
                     type="email"
                     placeholder="Твой email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="pl-12 h-14 text-base bg-secondary/50 border-border focus:border-primary"
-                    required
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      if (error) setError("");
+                    }}
+                    className={`pl-12 h-14 text-base bg-secondary/50 border-border focus:border-primary ${error ? "border-destructive focus:border-destructive" : ""
+                      }`}
                     disabled={isLoading}
                   />
+                  {error && (
+                    <p className="text-destructive text-sm mt-1 ml-1">{error}</p>
+                  )}
                 </div>
+
+                {/* Honeypot field */}
+                <input
+                  type="text"
+                  name="policy_agree"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  placeholder="я соглашаюсь с политикой сайта"
+                  value={policyAgree}
+                  onChange={(e) => setPolicyAgree(e.target.value)}
+                  style={{ position: "absolute", left: "-9999px" }}
+                />
+
                 <Button
                   type="submit"
                   size="lg"
@@ -113,7 +163,7 @@ const WaitlistForm = () => {
               </div>
               <h3 className="text-xl font-bold text-foreground mb-2">Готово!</h3>
               <p className="text-muted-foreground">
-                Мы свяжемся с тобой, когда всё будет готово к запуску.
+                Если это твой email - проверь почту. Мы отправили письмо для подтверждения.
               </p>
             </div>
           )}
