@@ -15,7 +15,7 @@ const PainPoints = () => {
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url("/XAc3zRRhMEF4Z3ibGb0FY.png")',
+          backgroundImage: 'url("/landing-assets/XAc3zRRhMEF4Z3ibGb0FY.png")',
         }}
       />
 

@@ -14,7 +14,7 @@ const Method = () => {
         <div className="bg-card rounded-3xl border border-border shadow-soft overflow-hidden">
           <div className="w-full aspect-[21/9] overflow-hidden">
             <img
-              src="/51LtmuPkimjfd17PoiUEk.png"
+              src="/landing-assets/51LtmuPkimjfd17PoiUEk.png"
               alt="GTD Method"
               className="w-full h-full object-cover"
             />
