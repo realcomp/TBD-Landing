@@ -7,6 +7,7 @@ import Method from "@/components/sections/Method";
 import Features from "@/components/sections/Features";
 import UseCases from "@/components/sections/UseCases";
 import TargetAudience from "@/components/sections/TargetAudience";
+import Pricing from "@/components/sections/Pricing";
 import WaitlistForm from "@/components/sections/WaitlistForm";
 import Footer from "@/components/sections/Footer";
 
@@ -23,6 +24,7 @@ const Index = () => {
         <Features />
         <UseCases />
         <TargetAudience />
+        <Pricing />
         <div id="waitlist">
           <WaitlistForm />
         </div>
