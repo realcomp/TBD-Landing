@@ -11,12 +11,10 @@ const Header = () => {
       <div className="container max-w-6xl mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold">D</span>
-            </div>
+            <img src="/logo.png" alt="DTG Studio Logo" className="w-9 h-9 object-contain" />
             <span className="text-lg font-bold text-foreground">DTG Studio</span>
           </div>
-          
+
           <Button onClick={scrollToWaitlist} size="sm" className="shadow-soft">
             Вступить в лист ожидания
           </Button>

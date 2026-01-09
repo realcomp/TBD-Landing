@@ -4,12 +4,10 @@ const Footer = () => {
       <div className="container max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">D</span>
-            </div>
+            <img src="/logo.png" alt="DTG Studio Logo" className="w-10 h-10 object-contain" />
             <span className="text-xl font-bold text-foreground">DTG Studio</span>
           </div>
-          
+
           <p className="text-muted-foreground text-sm text-center md:text-right">
             © {new Date().getFullYear()} DTG Studio. Система для спокойной головы.
           </p>
