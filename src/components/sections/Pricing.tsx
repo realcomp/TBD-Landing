@@ -5,7 +5,7 @@ const Pricing = () => {
         <section className="py-24 px-4 lg:px-8 bg-background">
             <div className="container max-w-5xl mx-auto">
                 <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-12">
-                    Почему это имеет смысл
+                    Сколько это стоит?
                 </h2>
 
                 <div className="grid md:grid-cols-3 gap-6 mb-10">
@@ -52,9 +52,9 @@ const Pricing = () => {
                     <ul className="space-y-3">
                         {[
                             "За первые 10 дней после оплаты ты смотришь и решаешь, подходит ли это тебе",
-                            "Если не подошло — вернем 100% денег",
+                            "Если не подошло - вернем 100% денег",
                             "Это просто доступ к приложению, которое помогает быть эффективным",
-                            "Никаких уровней, никаких ограничений — всё включено",
+                            "Никаких уровней, никаких ограничений - всё включено",
                         ].map((text, i) => (
                             <li key={i} className="flex items-start gap-3 text-muted-foreground">
                                 <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -65,7 +65,7 @@ const Pricing = () => {
                 </div>
 
                 <p className="mt-8 text-center text-muted-foreground text-sm max-w-xl mx-auto">
-                    Это не обещание, что жизнь изменится. Это инструмент. Если у тебя есть хотя бы 50 дел в голове — система их разберет. Что дальше делать с ними — это твое решение. Но голова будет чистой.
+                    Это не обещание, что жизнь изменится, это инструмент. Если у тебя есть хотя бы 50 дел в голове, ты сможешь эффективно разобрать их с помощью системы. Что дальше делать с этим - это твое решение. Но голова будет чистой.
                 </p>
             </div>
         </section>

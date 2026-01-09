@@ -56,17 +56,17 @@ const BeforeAfter = () => {
               </div>
 
               <p className="text-muted-foreground leading-relaxed">
-                Открываешь один экран "на ближайшее время" - там 5-7 реальных дел. Остальное разложено по полкам и не шумит.
+                Открываешь один экран "Бери и делай" - там список задач, которые ты сам выбрал. Остальные задачи разложены "по полкам" и "не шумят".
               </p>
 
               <p className="text-muted-foreground leading-relaxed">
-                Вечером ты видишь фактический прогресс и понимаешь, что завтра делать дальше.
+                Ты сам решаешь, какую задачу выполнить, а вечером видишь фактический прогресс и понимаешь, что еще осталось сделать.
               </p>
 
               <div className="pt-4 border-t border-border flex items-center gap-2">
                 <ArrowRight className="w-4 h-4 text-primary" />
                 <p className="text-sm font-medium text-foreground">
-                  Спокойная голова и управляемая жизнь
+                  Нет ощущения "я все просрал и ничего не успел"
                 </p>
               </div>
             </div>

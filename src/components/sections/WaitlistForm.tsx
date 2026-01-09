@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Check, Mail, Shield, Gift, MessageSquare } from "lucide-react";
+import { Check, Mail, Shield, Gift, MessageSquare, CoinsIcon } from "lucide-react";
 
 const WaitlistForm = () => {
   const [email, setEmail] = useState("");
@@ -76,9 +76,10 @@ const WaitlistForm = () => {
   };
 
   const benefits = [
-    { icon: Gift, text: "Приглашение на закрытый запуск раньше остальных" },
-    { icon: MessageSquare, text: "Возможность влиять на механику" },
-    { icon: Check, text: "Сценарий разборки под твой текущий завал" },
+    { icon: Gift, text: "Приглашение в бета-версию" },
+    { icon: MessageSquare, text: "Возможность активно влиять на разработку" },
+    { icon: Check, text: "Сценарий разбора задач под твой текущий завал" },
+    { icon: CoinsIcon, text: "Полугодовой бесплатный доступ" },
   ];
 
   return (

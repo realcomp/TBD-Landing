@@ -22,13 +22,13 @@ const Method = () => {
           <div className="p-8 md:p-12">
             <div className="text-center mb-10">
               <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
-                В основе метода
+                В основе сервиса методика
               </p>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                 Getting Things Done (GTD)
               </h2>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Но без религиозности
+                но без религиозности
               </p>
             </div>
 

@@ -27,7 +27,7 @@ const Hero = () => {
 
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
               Ты постоянно напряжен: держишь в голове десятки задач и живешь с ощущением, что постоянно что-то забываешь?
-              За 1-2 дня ты соберешь все свои задачи в один список, отсортируешь их по степени важности, и перестанешь заботитьс о том, что что-то забыл.
+              За 1-2 дня ты соберешь все свои задачи в один список, отсортируешь их по степени важности, и перестанешь заботиться о том, что что-то забыл.
             </p>
 
             <ul className="space-y-4">
@@ -44,7 +44,7 @@ const Hero = () => {
                 Вступить в лист ожидания
               </Button>
               <p className="text-sm text-muted-foreground max-w-md">
-                Ранний доступ в закрытый запуск и короткое интервью - под твой реальный завал, а не "идеальный кейс".
+                Ранний доступ в закрытый запуск и 6 месяцев бесплатного использования для первых 100 пользователей.
               </p>
             </div>
           </div>
@@ -57,16 +57,16 @@ const Hero = () => {
                     <span className="text-xl">📥</span>
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground">Входящие</p>
-                    <p className="text-sm text-muted-foreground">7 задач ждут решения</p>
+                    <p className="font-semibold text-foreground">Бери и делай</p>
+                    <p className="text-sm text-muted-foreground">Осталось 7 задач</p>
                   </div>
                 </div>
 
                 <div className="space-y-3">
                   {[
-                    { label: "Ответить на письмо", tag: "Срочно", color: "bg-destructive/10 text-destructive" },
-                    { label: "Подготовить отчет", tag: "Работа", color: "bg-accent text-accent-foreground" },
-                    { label: "Созвон с клиентом", tag: "Сегодня", color: "bg-primary/10 text-primary" },
+                    { label: "Ответить на письмо", tag: "Проект DTG", color: "bg-destructive/10 text-destructive" },
+                    { label: "Купить билеты", tag: "Отпуск", color: "bg-accent text-accent-foreground" },
+                    { label: "Оплатить счета", tag: "Домашние дела", color: "bg-primary/10 text-primary" },
                   ].map((task, i) => (
                     <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-secondary/50 hover:bg-secondary transition-colors">
                       <span className="text-sm font-medium text-foreground">{task.label}</span>
