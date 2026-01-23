@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 interface HeaderProps {
     scrollToSection: (sectionId: string) => void;
@@ -27,8 +28,8 @@ export function Header({ scrollToSection, activeSection }: HeaderProps) {
                         <button
                             onClick={() => scrollToSection("how")}
                             className={`text-sm font-medium transition-colors ${activeSection === "how"
-                                    ? "text-primary border-b-2 border-primary pb-1"
-                                    : "text-foreground/70 hover:text-foreground"
+                                ? "text-primary border-b-2 border-primary pb-1"
+                                : "text-foreground/70 hover:text-foreground"
                                 }`}
                         >
                             Как работает
@@ -36,8 +37,8 @@ export function Header({ scrollToSection, activeSection }: HeaderProps) {
                         <button
                             onClick={() => scrollToSection("features")}
                             className={`text-sm font-medium transition-colors ${activeSection === "features"
-                                    ? "text-primary border-b-2 border-primary pb-1"
-                                    : "text-foreground/70 hover:text-foreground"
+                                ? "text-primary border-b-2 border-primary pb-1"
+                                : "text-foreground/70 hover:text-foreground"
                                 }`}
                         >
                             Возможности
@@ -45,8 +46,8 @@ export function Header({ scrollToSection, activeSection }: HeaderProps) {
                         <button
                             onClick={() => scrollToSection("access")}
                             className={`text-sm font-medium transition-colors ${activeSection === "access"
-                                    ? "text-primary border-b-2 border-primary pb-1"
-                                    : "text-foreground/70 hover:text-foreground"
+                                ? "text-primary border-b-2 border-primary pb-1"
+                                : "text-foreground/70 hover:text-foreground"
                                 }`}
                         >
                             Доступ
@@ -54,12 +55,20 @@ export function Header({ scrollToSection, activeSection }: HeaderProps) {
                     </nav>
 
                     {/* CTA Button */}
-                    <button
-                        onClick={() => scrollToSection("access")}
-                        className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition"
-                    >
-                        Вступить
-                    </button>
+                    <div className="flex items-center gap-4">
+                        <Link
+                            to="/inbox"
+                            className="text-sm text-muted-foreground hover:text-foreground transition focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm"
+                        >
+                            Войти
+                        </Link>
+                        <button
+                            onClick={() => scrollToSection("access")}
+                            className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition"
+                        >
+                            Вступить
+                        </button>
+                    </div>
                 </div>
             </div>
         </header>
