@@ -277,12 +277,12 @@ export default function Index() {
             <div className="flex justify-center md:justify-end">
               <div className="w-full max-w-md bg-card border border-border rounded-2xl shadow-card p-3">
                 <a
-                  href="https://cdn.builder.io/api/v1/image/assets%2F8a054a64822644caab1530df05a2c194%2F45b44fb89cae42628acfa6de186eeebe?format=webp&width=1920"
+                  href="https://cdn.builder.io/api/v1/image/assets%2F8a054a64822644caab1530df05a2c194%2F7c803fd5f805469eb0b21099e8f21829?format=webp&width=1920"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <img
-                    src="https://cdn.builder.io/api/v1/image/assets%2F8a054a64822644caab1530df05a2c194%2F45b44fb89cae42628acfa6de186eeebe?format=webp&width=800&height=1200"
+                    src="https://cdn.builder.io/api/v1/image/assets%2F8a054a64822644caab1530df05a2c194%2F7c803fd5f805469eb0b21099e8f21829?format=webp&width=800&height=1200"
                     alt="DTG Studio Product Screenshot"
                     className="w-full rounded-xl object-cover"
                   />
