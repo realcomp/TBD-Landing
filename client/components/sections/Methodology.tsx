@@ -13,22 +13,21 @@ export function Methodology() {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
                     <div className="lg:w-1/2">
-                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 leading-tight">
-                            В основе сервиса методика <br />
-                            <span className="text-primary italic">Getting Things Done (GTD)</span> <br />
-                            но без религиозности
+                        <h2 className="text-2xl sm:text-3xl font-bold mb-12">
+                            Основа метода
                         </h2>
                         <div className="space-y-6 text-muted-foreground leading-relaxed text-lg">
                             <p>
+                                В основе сервиса методика <b>Getting Things Done (GTD)</b> но без религиозности.<br />
                                 Это способ структурирования задач, который разработал Дэвид Аллен.
                                 Он десятилетиями работал консультантом по личной эффективности.
-                                Методике больше 30 лет практики, а книга стала базовой для людей,
+                                Методике больше 30 лет, а книга стала базовой для людей,
                                 уставших жить в режиме постоянного пожара.
                             </p>
                             <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-xl">
                                 <p className="font-medium text-foreground italic">
-                                    "Но тебе не нужно «изучать метод». Тебе нужен результат:
-                                    чтобы входящие перестали давить и стало понятно, что делать дальше."
+                                    Тебе не нужно "изучать метод". Тебе нужен результат:
+                                    чтобы постоянно расширяющийся список задач перестал давить и стало понятно, что делать дальше.
                                 </p>
                             </div>
                         </div>
