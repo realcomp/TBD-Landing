@@ -254,7 +254,7 @@ export default function Index() {
               {[
                 {
                   step: 1,
-                  title: "Записал мысль во Входящие за 10 секунд",
+                  title: "Записал мысль во \"Входящие\" за 10 секунд",
                   icon: <MessageSquare className="h-5 w-5" />,
                 },
                 {
@@ -264,12 +264,12 @@ export default function Index() {
                 },
                 {
                   step: 3,
-                  title: "Получил контексты и реальные дедлайны отдельно",
+                  title: "Получил контекст и реальные дедлайны отдельно",
                   icon: <Target className="h-5 w-5" />,
                 },
                 {
                   step: 4,
-                  title: "Открыл нужный контекст и сделал одну задачу",
+                  title: "Открыл нужный контекст и сделал одну задачу. Или две. Или, даже, пять. Сколько получилось.",
                   icon: <CheckCircle className="h-5 w-5" />,
                 },
               ].map((item) => (
