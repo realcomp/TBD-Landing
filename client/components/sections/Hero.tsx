@@ -16,16 +16,11 @@ export function Hero({ scrollToSection }: HeroProps) {
                         </h1>
                         <div className="text-lg text-muted-foreground mb-8 leading-relaxed">
                             <p className="mb-4">
-                                Каждое утро составляешь план из пяти задач, к вечеру делаешь
-                                только две и ощущаешь себя неудачником?
+                                Каждое утро план из пяти задач, к вечеру сделаны всего две и есть чувство вины.
+                                DTG Studio помогает разобрать завал за пару часов и дальше выбирать, что реально сделать прямо сейчас.
                             </p>
                             <p>
-                                При помощи DTG Studio ты за пару часов прогоняешь весь завал
-                                через "мастер разбора" и получаешь список готовых действий.
-                                Утром ты больше не пишешь план, ты открываешь систему и
-                                смотришь, что можно сделать прямо сейчас. Сделал хотя бы одну
-                                задачу - уже прогресс. Не получилось сделать – не беда, планов
-                                и не было.
+                                Закрыл одну задачу - уже прогресс. Не закрыл - не провал, плана не было.
                             </p>
                         </div>
 
@@ -63,7 +58,7 @@ export function Hero({ scrollToSection }: HeroProps) {
                                 onClick={() => scrollToSection("access")}
                                 className="inline-flex items-center justify-center rounded-full border border-primary/35 px-6 py-3 text-sm font-medium text-primary hover:bg-primary/10 transition"
                             >
-                                Вступить
+                                Вступить в лист ожидания
                             </button>
                         </div>
                     </div>

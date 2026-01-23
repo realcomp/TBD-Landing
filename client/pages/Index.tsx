@@ -3,10 +3,10 @@ import { Header } from "@/components/sections/Header";
 import { Hero } from "@/components/sections/Hero";
 import { PainSection } from "@/components/sections/PainSection";
 import { HowItWorks } from "@/components/sections/HowItWorks";
-import { Results } from "@/components/sections/Results";
-import { Methodology } from "@/components/sections/Methodology";
+// import { Results } from "@/components/sections/Results";
+// import { Methodology } from "@/components/sections/Methodology";
 import { Features } from "@/components/sections/Features";
-import { TargetAudience } from "@/components/sections/TargetAudience";
+// import { TargetAudience } from "@/components/sections/TargetAudience";
 import { Pricing } from "@/components/sections/Pricing";
 import { Access } from "@/components/sections/Access";
 import { Footer } from "@/components/sections/Footer";
@@ -17,7 +17,7 @@ export default function Index() {
   // Track active section for header highlight
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["hero", "pain", "how", "methodology", "results", "features", "target", "pricing", "access"];
+      const sections = ["hero", "pain", "how", "features", "pricing", "access"];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -48,10 +48,10 @@ export default function Index() {
         <Hero scrollToSection={scrollToSection} />
         <PainSection />
         <HowItWorks />
-        <Methodology />
-        <Results />
+        {/* <Methodology /> */}
+        {/* <Results /> */}
         <Features />
-        <TargetAudience />
+        {/* <TargetAudience /> */}
         <Pricing />
         <Access />
       </main>
