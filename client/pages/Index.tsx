@@ -7,6 +7,7 @@ import { Results } from "@/components/sections/Results";
 import { Methodology } from "@/components/sections/Methodology";
 import { Features } from "@/components/sections/Features";
 import { TargetAudience } from "@/components/sections/TargetAudience";
+import { Pricing } from "@/components/sections/Pricing";
 import { Access } from "@/components/sections/Access";
 import { Footer } from "@/components/sections/Footer";
 
@@ -16,7 +17,7 @@ export default function Index() {
   // Track active section for header highlight
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["hero", "pain", "how", "methodology", "results", "features", "target", "access"];
+      const sections = ["hero", "pain", "how", "methodology", "results", "features", "target", "pricing", "access"];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -51,6 +52,7 @@ export default function Index() {
         <Results />
         <Features />
         <TargetAudience />
+        <Pricing />
         <Access />
       </main>
       <Footer />
