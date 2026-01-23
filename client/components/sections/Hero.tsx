@@ -74,6 +74,9 @@ export function Hero({ scrollToSection }: HeroProps) {
                                 <img
                                     src="https://cdn.builder.io/api/v1/image/assets%2F8a054a64822644caab1530df05a2c194%2F45b44fb89cae42628acfa6de186eeebe?format=webp&width=800&height=1200"
                                     alt="DTG Studio Product Screenshot"
+                                    width="800"
+                                    height="1200"
+                                    fetchPriority="high"
                                     className="w-full rounded-xl object-cover"
                                 />
                             </a>
