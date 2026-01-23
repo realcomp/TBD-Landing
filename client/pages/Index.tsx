@@ -277,12 +277,17 @@ export default function Index() {
             {/* Screenshot */}
             <div className="flex justify-center md:justify-end">
               <div className="w-full max-w-md bg-card border border-border rounded-2xl shadow-card p-3">
-                <div className="w-full h-96 bg-muted rounded-xl flex items-center justify-center text-muted-foreground">
-                  <div className="text-center">
-                    <Eye className="h-12 w-12 mx-auto mb-2 opacity-40" />
-                    <p className="text-sm">Скриншот продукта</p>
-                  </div>
-                </div>
+                <a
+                  href="https://cdn.builder.io/api/v1/image/assets%2F8a054a64822644caab1530df05a2c194%2F45b44fb89cae42628acfa6de186eeebe?format=webp&width=1920"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F8a054a64822644caab1530df05a2c194%2F45b44fb89cae42628acfa6de186eeebe?format=webp&width=800&height=1200"
+                    alt="DTG Studio Product Screenshot"
+                    className="w-full rounded-xl object-cover"
+                  />
+                </a>
               </div>
             </div>
           </div>
