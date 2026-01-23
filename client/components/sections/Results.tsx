@@ -1,7 +1,10 @@
+import { Timer, Zap, Trophy } from "lucide-react";
+
 export function Results() {
     const transformationSteps = [
         {
             title: "Через 7 дней",
+            icon: <Timer className="h-6 w-6" />,
             content: (
                 <>
                     <p className="mb-4">
@@ -28,6 +31,7 @@ export function Results() {
         },
         {
             title: "Через месяц",
+            icon: <Zap className="h-6 w-6" />,
             content: (
                 <>
                     <p className="mb-4">
@@ -53,6 +57,7 @@ export function Results() {
         },
         {
             title: "Через полгода",
+            icon: <Trophy className="h-6 w-6" />,
             content: (
                 <>
                     <p className="mb-4">
@@ -71,19 +76,22 @@ export function Results() {
     ];
 
     return (
-        <section id="results" className="bg-background py-14 sm:py-20">
+        <section id="results" className="bg-background py-16 sm:py-24">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-2xl sm:text-3xl font-bold mb-12">
+                <h2 className="text-3xl sm:text-4xl font-bold mb-16">
                     Твоя трансформация
                 </h2>
 
-                <div className="grid md:grid-cols-3 gap-6">
+                <div className="grid md:grid-cols-3 gap-8">
                     {transformationSteps.map((item, idx) => (
                         <div
                             key={idx}
-                            className="bg-card border border-border rounded-2xl shadow-card p-6 sm:p-8"
+                            className="group bg-card border border-border rounded-3xl p-8 transition-all duration-300 hover:shadow-lg hover:border-primary/20"
                         >
-                            <h3 className="text-lg font-bold text-primary mb-3">
+                            <div className="inline-flex p-3 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300 mb-6">
+                                {item.icon}
+                            </div>
+                            <h3 className="text-xl font-bold text-foreground mb-4">
                                 {item.title}
                             </h3>
                             <div className="text-muted-foreground leading-relaxed text-sm">

@@ -5,23 +5,23 @@ export function HowItWorks() {
         {
             step: 1,
             title: 'Записал мысль во "Входящие" за 10 секунд',
-            icon: <MessageSquare className="h-5 w-5" />,
+            icon: <MessageSquare className="h-6 w-6" />,
         },
         {
             step: 2,
             title: "Разобрал накопившееся через мастер разбора",
-            icon: <Zap className="h-5 w-5" />,
+            icon: <Zap className="h-6 w-6" />,
         },
         {
             step: 3,
             title: "Получил контекст и реальные дедлайны отдельно",
-            icon: <Target className="h-5 w-5" />,
+            icon: <Target className="h-6 w-6" />,
         },
         {
             step: 4,
             title:
                 "Открыл нужный контекст и сделал одну задачу. Или две. Или, даже, пять. Сколько получилось.",
-            icon: <CheckCircle className="h-5 w-5" />,
+            icon: <CheckCircle className="h-6 w-6" />,
         },
     ];
 
@@ -32,20 +32,24 @@ export function HowItWorks() {
                     Как это работает
                 </h2>
 
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-2 gap-8 items-start">
                     {/* Steps */}
                     <div className="space-y-6">
                         {steps.map((item) => (
                             <div
                                 key={item.step}
-                                className="bg-card border border-border rounded-xl shadow-card p-4 sm:p-6"
+                                className="group bg-card border border-border rounded-3xl p-6 sm:p-8 transition-all duration-300 hover:shadow-lg hover:border-primary/20"
                             >
-                                <div className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground border border-border mb-4">
+                                <div className="inline-flex items-center rounded-full bg-muted/50 px-3 py-1 text-xs font-semibold text-muted-foreground border border-border mb-6">
                                     Шаг {item.step}
                                 </div>
-                                <div className="flex gap-4 items-start">
-                                    <div className="mt-1 text-primary">{item.icon}</div>
-                                    <p className="text-foreground font-medium">{item.title}</p>
+                                <div className="flex gap-5 items-start">
+                                    <div className="flex-shrink-0 p-3 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                                        {item.icon}
+                                    </div>
+                                    <p className="text-lg font-medium leading-relaxed pt-1">
+                                        {item.title}
+                                    </p>
                                 </div>
                             </div>
                         ))}

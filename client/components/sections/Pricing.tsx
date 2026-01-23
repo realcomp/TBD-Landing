@@ -8,29 +8,35 @@ export function Pricing() {
                     Сколько это стоит?
                 </h2>
 
-                <div className="grid md:grid-cols-3 gap-6 mb-16">
+                <div className="grid md:grid-cols-3 gap-8 mb-16">
                     {/* Monthly */}
-                    <div className="bg-card border border-border rounded-3xl p-8 flex flex-col items-center text-center shadow-card hover:shadow-lg transition-all duration-300">
-                        <span className="text-muted-foreground italic mb-6">Помесячно</span>
-                        <div className="flex items-baseline gap-1 mb-2">
-                            <span className="text-4xl font-bold">900</span>
-                            <span className="text-xl text-muted-foreground">₽/мес</span>
+                    <div className="bg-card/50 border border-border/50 rounded-3xl p-8 flex flex-col items-center text-center transition-all duration-300 relative overflow-hidden opacity-60">
+                        <div className="absolute top-4 right-4 bg-muted text-muted-foreground text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-tighter">
+                            Скоро
                         </div>
-                        <p className="text-sm text-muted-foreground">с рассрочкой</p>
+                        <span className="text-muted-foreground/70 italic mb-6">Помесячно</span>
+                        <div className="flex items-baseline gap-1 mb-2 text-muted-foreground/50">
+                            <span className="text-4xl font-bold">900</span>
+                            <span className="text-xl">₽/мес</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground/40">с рассрочкой</p>
                     </div>
 
                     {/* Yearly */}
-                    <div className="bg-card border border-border rounded-3xl p-8 flex flex-col items-center text-center shadow-card hover:shadow-lg transition-all duration-300 relative overflow-hidden">
-                        <span className="text-muted-foreground italic mb-6">За весь год</span>
-                        <div className="flex items-baseline gap-1 mb-2">
-                            <span className="text-4xl font-bold">9 900</span>
-                            <span className="text-xl text-muted-foreground">₽</span>
+                    <div className="bg-card/50 border border-border/50 rounded-3xl p-8 flex flex-col items-center text-center transition-all duration-300 relative overflow-hidden opacity-60">
+                        <div className="absolute top-4 right-4 bg-muted text-muted-foreground text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-tighter">
+                            Скоро
                         </div>
-                        <p className="text-sm text-muted-foreground">~825 ₽/мес</p>
+                        <span className="text-muted-foreground/70 italic mb-6">За весь год</span>
+                        <div className="flex items-baseline gap-1 mb-2 text-muted-foreground/50">
+                            <span className="text-4xl font-bold">9 900</span>
+                            <span className="text-xl">₽</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground/40">~825 ₽/мес</p>
                     </div>
 
                     {/* Early Birds */}
-                    <div className="bg-card border-2 border-primary rounded-3xl p-8 flex flex-col items-center text-center shadow-card hover:shadow-lg transition-all duration-300 relative">
+                    <div className="bg-card border-2 border-primary rounded-3xl p-8 flex flex-col items-center text-center transition-all duration-300 hover:shadow-lg relative group">
                         <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">
                             Early Birds
                         </div>
@@ -44,12 +50,12 @@ export function Pricing() {
                 </div>
 
                 {/* Honestly Block */}
-                <div className="max-w-4xl mx-auto bg-card border border-border rounded-[2.5rem] p-8 sm:p-12 shadow-card mb-12">
-                    <div className="flex items-center gap-3 mb-8">
-                        <div className="p-2 rounded-xl bg-primary/10 text-primary">
-                            <ShieldCheck className="h-6 w-6" />
+                <div className="max-w-4xl mx-auto bg-card border border-border rounded-[2.5rem] p-8 sm:p-12 transition-all duration-300 hover:shadow-lg hover:border-primary/20 group mb-12">
+                    <div className="flex items-center gap-5 mb-10">
+                        <div className="flex-shrink-0 p-3 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                            <ShieldCheck className="h-7 w-7" />
                         </div>
-                        <h3 className="text-xl font-bold">Честно:</h3>
+                        <h3 className="text-2xl font-bold">Честно:</h3>
                     </div>
 
                     <ul className="space-y-4">

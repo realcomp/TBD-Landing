@@ -13,37 +13,37 @@ export function Features() {
             title: "Мастер разбора входящих",
             description:
                 "Быстро разберешь накопившееся и разложишь по контекстам и дедлайнам без стресса.",
-            icon: <Zap className="h-5 w-5" />,
+            icon: <Zap className="h-6 w-6" />,
         },
         {
             title: "Списки по контекстам",
             description:
                 "Переключайся между контекстами: дома, в офисе, с ноутбуком - видишь только нужные.",
-            icon: <Target className="h-5 w-5" />,
+            icon: <Target className="h-6 w-6" />,
         },
         {
             title: "Выбор вместо плана",
             description:
                 "Не план, а список готовых действий. Открыл контекст и делаешь то, что можешь.",
-            icon: <CheckCircle className="h-5 w-5" />,
+            icon: <CheckCircle className="h-6 w-6" />,
         },
         {
             title: "Контроль реальных дедлайнов",
             description:
                 "Дедлайны отдельно от потока. Видишь, что важно, а что можно отложить.",
-            icon: <Clock className="h-5 w-5" />,
+            icon: <Clock className="h-6 w-6" />,
         },
         {
             title: "Мастер выгрузки задач из головы",
             description:
                 "Все, что крутится в голове, выгружаешь за минуту. Голова становится легче.",
-            icon: <Download className="h-5 w-5" />,
+            icon: <Download className="h-6 w-6" />,
         },
         {
             title: "Еженедельный обзор",
             description:
                 "Раз в неделю видишь, что сделал, что отложил и планируешь неделю вперед.",
-            icon: <Calendar className="h-5 w-5" />,
+            icon: <Calendar className="h-6 w-6" />,
         },
     ];
 
@@ -56,11 +56,13 @@ export function Features() {
                     {features.map((feature, idx) => (
                         <div
                             key={idx}
-                            className="bg-card border border-border rounded-2xl shadow-card p-6 sm:p-8"
+                            className="group bg-card border border-border rounded-3xl p-8 transition-all duration-300 hover:shadow-lg hover:border-primary/20"
                         >
-                            <div className="text-primary mb-4">{feature.icon}</div>
-                            <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-                            <p className="text-sm text-muted-foreground">
+                            <div className="inline-flex p-3 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300 mb-6">
+                                {feature.icon}
+                            </div>
+                            <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                            <p className="text-muted-foreground leading-relaxed">
                                 {feature.description}
                             </p>
                         </div>

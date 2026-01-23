@@ -1,7 +1,13 @@
-import "dotenv/config";
+import dotenv from "dotenv";
+import path from "path";
+
+// Load .env first, then .env.local (overriding)
+dotenv.config();
+dotenv.config({ path: path.resolve(process.cwd(), ".env.local"), override: true });
 import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
+import { handleWaitlist, handleConfirm } from "./routes/waitlist";
 
 export function createServer() {
   const app = express();
@@ -18,6 +24,8 @@ export function createServer() {
   });
 
   app.get("/api/demo", handleDemo);
+  app.post("/api/waitlist", handleWaitlist);
+  app.get("/api/waitlist/confirm", handleConfirm);
 
   return app;
 }
