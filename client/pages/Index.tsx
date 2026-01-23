@@ -4,7 +4,6 @@ import {
   Zap,
   Clock,
   Target,
-  Eye,
   Calendar,
   Download,
   MessageSquare,
