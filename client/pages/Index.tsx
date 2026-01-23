@@ -133,8 +133,8 @@ export default function Index() {
                   через "мастер разбора" и получаешь список готовых действий.
                   Утром ты больше не пишешь план, ты открываешь систему и
                   смотришь, что можно сделать прямо сейчас. Сделал хотя бы одну
-                  задачу - уже прогресс. Не получилось сделать – не беда,
-                  планов и не было.
+                  задачу - уже прогресс. Не получилось сделать – не беда, планов
+                  и не было.
                 </p>
               </div>
 
@@ -254,7 +254,7 @@ export default function Index() {
               {[
                 {
                   step: 1,
-                  title: "Записал мысль во \"Входящие\" за 10 секунд",
+                  title: 'Записал мысль во "Входящие" за 10 секунд',
                   icon: <MessageSquare className="h-5 w-5" />,
                 },
                 {
@@ -269,11 +269,15 @@ export default function Index() {
                 },
                 {
                   step: 4,
-                  title: "Открыл нужный контекст и сделал одну задачу. Или две. Или, даже, пять. Сколько получилось.",
+                  title:
+                    "Открыл нужный контекст и сделал одну задачу. Или две. Или, даже, пять. Сколько получилось.",
                   icon: <CheckCircle className="h-5 w-5" />,
                 },
               ].map((item) => (
-                <div key={item.step} className="bg-card border border-border rounded-xl shadow-card p-4 sm:p-6">
+                <div
+                  key={item.step}
+                  className="bg-card border border-border rounded-xl shadow-card p-4 sm:p-6"
+                >
                   <div className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground border border-border mb-4">
                     Шаг {item.step}
                   </div>
@@ -330,8 +334,8 @@ export default function Index() {
                       видишь список задач, которые подходят под текущую
                       ситуацию. 15 минут между встречами - берешь одну из
                       "быстрых". Сел за компьютер на 2 часа - открываешь
-                      @компьютер. Закрыл одну задачу - это прогресс. Нет
-                      красных счетчиков просроченного. Нет чувства провала за
+                      @компьютер. Закрыл одну задачу - это прогресс. Нет красных
+                      счетчиков просроченного. Нет чувства провала за
                       "несделанный план".
                     </p>
                   </>
@@ -444,9 +448,7 @@ export default function Index() {
                 key={idx}
                 className="bg-card border border-border rounded-2xl shadow-card p-6 sm:p-8"
               >
-                <div className="text-muted-foreground mb-4">
-                  {feature.icon}
-                </div>
+                <div className="text-muted-foreground mb-4">{feature.icon}</div>
                 <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
                 <p className="text-sm text-muted-foreground">
                   {feature.description}
