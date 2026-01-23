@@ -1,0 +1,9 @@
+services:
+  landing:
+    build: .
+    container_name: gtd-landing
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3003:80"
+    env_file:
+      - .env.local
