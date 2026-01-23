@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { CheckCircle } from "lucide-react";
-import { Link } from "react-router-dom";
 import { WaitlistForm } from "./WaitlistForm";
 
 export function Access() {
@@ -48,9 +47,9 @@ export function Access() {
 
                     <p className="mt-4 text-sm text-muted-foreground">
                         Уже есть доступ?{" "}
-                        <Link to="/inbox" className="text-primary hover:underline font-medium">
+                        <a href="/inbox" className="text-primary hover:underline font-medium">
                             Войти в приложение
-                        </Link>
+                        </a>
                     </p>
 
                     {/* CTA Text */}

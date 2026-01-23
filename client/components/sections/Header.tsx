@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 interface HeaderProps {
     scrollToSection: (sectionId: string) => void;
@@ -56,12 +55,12 @@ export function Header({ scrollToSection, activeSection }: HeaderProps) {
 
                     {/* CTA Button */}
                     <div className="flex items-center gap-4">
-                        <Link
-                            to="/inbox"
+                        <a
+                            href="/inbox"
                             className="text-sm text-muted-foreground hover:text-foreground transition focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm"
                         >
                             Войти
-                        </Link>
+                        </a>
                         <button
                             onClick={() => scrollToSection("access")}
                             className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition"
