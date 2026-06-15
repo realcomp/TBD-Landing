@@ -1,4 +1,4 @@
-import { Calendar, CalendarDays, Sparkles } from "lucide-react";
+import { Calendar, Zap, Rocket } from "lucide-react";
 
 const Timeline = () => {
   const timelineItems = [
@@ -6,37 +6,27 @@ const Timeline = () => {
       icon: Calendar,
       period: "Через 7 дней",
       title: "Первый рабочий контур",
-      points: [
-        "Все входящие собраны в одной системе",
-        "По каждому пункту принято решение: сделать, отложить, делегировать, выкинуть",
-        "В фокусе остаются только реальные действия",
-        "Ты впервые видишь полный объём дел, но он больше не давит",
-      ],
-      quote: "Список перестаёт быть угрозой. Он становится картой.",
+      description: "Весь завал обработан через мастер выгрузки задач из головы и превращен в два-три десятка задач, сгруппированных в проекты или отдельных, а неважные задачи типа...",
+      details: "", // Details missing in source
+      highlight: "", // Highlight missing in source
+      image: "/landing-assets/51LtmuPkimjfd17PoiUEk.png"
     },
     {
-      icon: CalendarDays,
+      icon: Zap,
       period: "Через месяц",
-      title: "Система встраивается в жизнь",
-      points: [
-        "Ты перестаёшь открывать 5 приложений и искать, где что записано",
-        "Разбор входящих занимает 10 минут, а не \"полдня разгребания\"",
-        "Проекты не зависают - у каждого есть следующий конкретный шаг",
-        "Уведомления не дёргают - ты сам решаешь, когда что смотреть",
-      ],
-      quote: "Цель - перестать жить в тревоге от незакрытых хвостов.",
+      title: "Система работает на автомате",
+      description: "Новая задача - быстрый ответ на 3-4 вопроса, и она легла в правильный контекст.",
+      details: "Тебе не нужно каждое утро решать \"что делать сегодня\". День прошел не по плану? Нормально. Сделал 3 задачи вместо 5? Это прогресс, а не провал.",
+      highlight: "Ты не живешь по расписанию. Ты выбираешь по ситуации из готового списка.",
+      image: "/landing-assets/pxCzd_RuK71yhnnUqx3C1.png"
     },
     {
-      icon: Sparkles,
+      icon: Rocket,
       period: "Через полгода",
-      title: "В голове становится тихо",
-      points: [
-        "Фоновое \"надо то, надо это\" заметно исчезает",
-        "Видно, какие проекты реально двигаются, а какие создают шум",
-        "Ты не хватаешься за всё подряд - есть понятный фокус",
-        "Дела не пропадают в мессенджерах и не висят \"в воздухе\"",
-      ],
-      quote: "Ты не становишься \"более дисциплинированным\". Ты просто перестаёшь быть единственной оперативной памятью.",
+      title: "Решения принимаются в моменте",
+      description: "Пришла новая задача - за 30 секунд прогнал через мастер, она легла в систему и появится когда нужно.",
+      details: "Утро не начинается с мучительного планирования. Нет ощущения \"опять не выполнил план\" - потому что ты не предсказываешь будущее, ты работаешь с настоящим.",
+      highlight: "Ты не становишься более дисциплинированным. Ты просто перестаешь планировать то, что невозможно предсказать."
     },
   ];
 
@@ -44,10 +34,10 @@ const Timeline = () => {
     <section className="py-24 px-4 lg:px-8 section-gradient">
       <div className="container max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Твоя трансформация
           </h2>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+          <p className="text-muted-foreground text-xl">
             Что изменится, если начать прямо сейчас
           </p>
         </div>
@@ -56,32 +46,49 @@ const Timeline = () => {
           {timelineItems.map((item, index) => (
             <div
               key={index}
-              className="relative bg-card rounded-2xl p-8 border border-border shadow-soft hover:shadow-glow transition-all duration-500 group"
+              className="relative bg-card rounded-[2rem] p-8 border border-border shadow-soft hover:shadow-glow hover:-translate-y-1 transition-all duration-500 group flex flex-col"
             >
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div className="w-14 h-14 rounded-xl bg-primary flex items-center justify-center shadow-glow">
-                  <item.icon className="w-6 h-6 text-primary-foreground" />
+              <div className="mb-6 relative">
+                <div className="w-full h-48 bg-secondary/50 rounded-2xl mb-6 flex flex-col items-center justify-center border-2 border-dashed border-primary/10 overflow-hidden group-hover:border-primary/30 transition-colors">
+                  {item.image ? (
+                    <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="flex flex-col items-center justify-center">
+                      <item.icon className="w-10 h-10 text-muted-foreground/20 mb-2" />
+                      <p className="text-xs font-bold text-muted-foreground/30 uppercase tracking-widest">Image Placeholder</p>
+                      <p className="text-[10px] text-muted-foreground/30">{item.period} visualization</p>
+                    </div>
+                  )}
+                </div>
+
+                <div className="absolute top-4 left-4 w-12 h-12 rounded-xl bg-background/80 backdrop-blur shadow-sm flex items-center justify-center ring-1 ring-border/50">
+                  <item.icon className="w-6 h-6 text-primary" />
                 </div>
               </div>
 
-              <div className="pt-8 space-y-6">
-                <div className="text-center">
-                  <p className="text-sm font-semibold text-primary uppercase tracking-wider">{item.period}</p>
-                  <h3 className="text-xl font-bold text-foreground mt-2">{item.title}</h3>
+              <div className="flex-1 space-y-4">
+                <div>
+                  <div className="inline-block px-3 py-1 rounded-full bg-secondary text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3">
+                    {item.period}
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
+                    {item.title}
+                  </h3>
                 </div>
 
-                <ul className="space-y-3">
-                  {item.points.map((point, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span className="text-sm text-muted-foreground leading-relaxed">{point}</span>
-                    </li>
-                  ))}
-                </ul>
+                <p className="text-foreground/80 leading-relaxed">
+                  {item.description}
+                </p>
 
-                <blockquote className="pt-4 border-t border-border">
-                  <p className="text-sm italic text-foreground leading-relaxed">"{item.quote}"</p>
-                </blockquote>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {item.details}
+                </p>
+              </div>
+
+              <div className="pt-6 mt-6 border-t border-border">
+                <p className="text-sm font-medium text-primary leading-relaxed italic">
+                  "{item.highlight}"
+                </p>
               </div>
             </div>
           ))}

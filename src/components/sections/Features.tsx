@@ -1,71 +1,77 @@
-import { Inbox, Wand2, FolderKanban, LayoutDashboard, Bell, Eye } from "lucide-react";
+import { SlidersHorizontal, Layers, CheckSquare, Clock, BrainCircuit, CalendarCheck } from "lucide-react";
 
 const Features = () => {
   const features = [
     {
-      icon: Inbox,
-      title: "Единый входящий список",
-      description: "Сюда скидываешь всё: дела, идеи, сообщения, напоминания. Пришла идея - быстро записал и забыл до поры.",
+      icon: SlidersHorizontal,
+      title: "Мастер разбора",
+      description: "Мастер разбора задач за 6 шагов раскладывает хаос по группам «сделать в ближайшее время», «сделать к определенному сроку», «делегировано», «сделать когда-нибудь» и позволяет с одной стороны сохранять все мысли, с другой – не терять из фокуса то, что сейчас главное для тебя.",
     },
     {
-      icon: Wand2,
-      title: "Мастер выгрузки задач из головы",
-      description: "Удобный стартовый опросник по ключевым зонам жизни поможет вспомнить всё, что висит фоном",
+      icon: CheckSquare,
+      title: "Гибкий список",
+      description: "В итоге ты получаешь не пять обязательных запланированных задач с последующим чувством вины за невыполненное, а список из 20-40 выбранных тобой действительно важных в настоящий момент задач, из которых ты берешь и выполняешь любую по ситуации.",
     },
     {
-      icon: LayoutDashboard,
-      title: "Мастер разбора входящих",
-      description: "Пошаговый процесс, чтобы быстро принимать решения и сортировать накопившиеся задачи",
-    },
-    {
-      icon: FolderKanban,
-      title: "Полки вместо хаоса",
-      description: "\"Бери и делай\", \"Дедлайны\", \"Подумать позже\", \"Поручено\", \"Документы и сведения\"",
-    },
-    {
-      icon: Eye,
-      title: "Ежедневный и еженедельный обзор",
-      description: "Короткие сценарии, чтобы система не умирала",
-    },
-    {
-      icon: Bell,
-      title: "Уведомления по желанию",
-      description: "Только о том о чем действительно нужно напомнить по твоему мнению",
+      icon: Clock,
+      title: "Реальные дедлайны",
+      description: "Реальные дедлайны с датами живут отдельно - система напомнит о них вовремя, не превращая каждый день в красную свалку просроченного.",
     },
   ];
 
   return (
-    <section className="py-24 px-4 lg:px-8 bg-card">
-      <div className="container max-w-6xl mx-auto">
+    <section className="py-24 px-4 lg:px-8 bg-card relative overflow-hidden">
+      {/* Texture or Bg Accent */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-secondary/50 to-transparent pointer-events-none" />
+
+      <div className="container max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Что ты получаешь
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+            Список готовых действий вместо ежедневного планирования
           </h2>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Это не очередной таск-менеджер, а система для ежедневного выполнения нужных тебе дел
-          </p>
+          {/* <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Что ты получаешь: это не планировщик дня, а система гибкого выбора по контексту.
+          </p> */}
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="group p-6 rounded-2xl bg-secondary/30 hover:bg-secondary/50 border border-transparent hover:border-border transition-all duration-300"
-            >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <feature.icon className="w-6 h-6 text-primary" />
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid sm:grid-cols-2 gap-x-8 gap-y-12">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="group p-1"
+              >
+                <div className="mb-4 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                  <feature.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">{feature.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">{feature.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
+            ))}
+          </div>
+
+          <div className="hidden lg:block relative">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-border/50 group hover:shadow-glow transition-all duration-500">
+              <img
+                src="/landing-assets/lT0M9AvZ7sGuWch1UN-Iy.png"
+                alt="Interface"
+                className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent pointer-events-none" />
             </div>
-          ))}
+
+            {/* Decorative elements behind */}
+            <div className="absolute -right-12 -bottom-12 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10 animate-pulse" />
+            <div className="absolute -left-12 -top-12 w-64 h-64 bg-accent/30 rounded-full blur-3xl -z-10" />
+          </div>
         </div>
 
-        <div className="mt-12 text-center">
-          <div className="inline-block bg-accent/50 rounded-2xl p-6 max-w-2xl">
-            <p className="text-foreground font-medium">
-              Если нужна ещё одна тетрадь со списками - их десятки. Если нужна{" "}
-              <span className="gradient-text font-bold">спокойная голова и управляемая жизнь</span> - добро пожаловать.
+        <div className="mt-20 text-center">
+          <div className="inline-block bg-gradient-to-br from-accent/50 to-secondary rounded-3xl p-8 max-w-3xl border border-border shadow-sm">
+            <p className="text-lg text-foreground font-medium leading-relaxed">
+              Если нужен ещё один планировщик дня с чувством вины за невыполненное - их десятки.
+              <br className="hidden sm:block" />
+              Если нужна <span className="gradient-text font-bold">гибкость выбирать по ситуации без демотивации</span> - добро пожаловать.
             </p>
           </div>
         </div>

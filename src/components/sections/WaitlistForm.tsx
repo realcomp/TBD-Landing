@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Check, Mail, Shield, Gift, MessageSquare, CoinsIcon } from "lucide-react";
+import { Check, Mail, Shield, Zap, MessageSquare, Gift } from "lucide-react";
 
 const WaitlistForm = () => {
   const [email, setEmail] = useState("");
@@ -45,30 +45,14 @@ const WaitlistForm = () => {
         }),
       });
 
-      // We interpret any 2xx response as success according to requirements
       if (response.ok) {
         setIsSubmitted(true);
         setEmail("");
       } else {
-        // Even if server returns error, we follow the requirement:
-        // "не показывай пользователю разные сообщения для разных ошибок на сервере. 
-        // Любой успешный ответ сервера (2xx) трактуем как "сообщение отправлено"."
-        // Wait, if it is NOT 2xx, should I still show success? 
-        // "Текст сообщения, например: "Если это твой email - проверь почту..."
-        // The instructions say: "если код 2xx - очисти поле email и покажи пользователю одно и то же сообщение об успехе"
-        // It doesn't explicitly say what to do if NOT 2xx. 
-        // Usually, if it's a server error, we might want to show a generic error, 
-        // but the prompt says "не показывай пользователю разные сообщения для разных ошибок на сервере".
-        // Let's stick to showing success only on ok, and maybe a generic error otherwise if we want to be safe, 
-        // or just treat it as "sent" if we want to obfuscate? 
-        // Re-reading: "Любой успешный ответ сервера (2xx) трактуем как 'сообщение отправлено'".
-        // This implies if it's NOT 2xx, it's not "sent".
         throw new Error("Failed to submit");
       }
     } catch (err) {
       console.error("Error submitting to waitlist:", err);
-      // Requirement: "не показывай пользователю разные сообщения для разных ошибок на сервере"
-      // I'll show a generic error if it really fails, but keep it simple.
       setError("Произошла ошибка при отправке. Попробуйте позже.");
     } finally {
       setIsLoading(false);
@@ -78,43 +62,41 @@ const WaitlistForm = () => {
   const benefits = [
     { icon: Gift, text: "Приглашение в бета-версию" },
     { icon: MessageSquare, text: "Возможность активно влиять на разработку" },
-    { icon: Check, text: "Сценарий разбора задач под твой текущий завал" },
-    { icon: CoinsIcon, text: "Полугодовой бесплатный доступ" },
+    { icon: Zap, text: "Индивидуальный разбор твоего текущего завала задач" },
+    { icon: Shield, text: "Полугодовой бесплатный доступ" },
   ];
 
   return (
     <section className="py-24 px-4 lg:px-8 hero-gradient">
       <div className="container max-w-3xl mx-auto">
-        <div className="bg-card rounded-3xl p-8 md:p-12 border border-border shadow-glow">
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent text-accent-foreground text-sm font-medium mb-6">
-              <Shield className="w-4 h-4" />
-              Ранний доступ без риска
-            </div>
+        <div className="bg-card rounded-[2.5rem] p-8 md:p-14 border border-border shadow-glow text-center">
+
+          <div className="mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Вступи в лист ожидания
+              Ранний доступ без риска
             </h2>
-            <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              Если после первых шагов ты понимаешь, что это не твоё - просто скажешь об этом. Нам важнее понять, где продукт не решает твою проблему.
+            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary/10 text-primary font-semibold mb-6">
+              Вступи в лист ожидания
+            </div>
+            <p className="text-muted-foreground text-lg max-w-xl mx-auto leading-relaxed">
+              Если после первых шагов ты понимаешь, что это не твоё - просто скажешь об этом. Нам важнее понять, где система не закрывает твою проблему.
             </p>
           </div>
 
-          <div className="space-y-4 mb-10">
+          <div className="grid sm:grid-cols-2 gap-4 mb-12 text-left bg-secondary/30 p-6 rounded-2xl">
             {benefits.map((benefit, index) => (
-              <div key={index} className="flex items-center gap-3 text-foreground">
-                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <benefit.icon className="w-4 h-4 text-primary" />
-                </div>
-                <span>{benefit.text}</span>
+              <div key={index} className="flex items-start gap-3 text-foreground/90">
+                <benefit.icon className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="font-medium text-sm">{benefit.text}</span>
               </div>
             ))}
           </div>
 
           {!isSubmitted ? (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="flex flex-col sm:flex-row gap-3">
-                <div className="relative flex-1">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+            <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto relative z-10">
+              <div className="flex flex-col gap-3">
+                <div className="relative">
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground/70" />
                   <Input
                     type="email"
                     placeholder="Твой email"
@@ -123,16 +105,15 @@ const WaitlistForm = () => {
                       setEmail(e.target.value);
                       if (error) setError("");
                     }}
-                    className={`pl-12 h-14 text-base bg-secondary/50 border-border focus:border-primary ${error ? "border-destructive focus:border-destructive" : ""
+                    className={`pl-12 h-14 text-base bg-background border-border shadow-inner focus:ring-2 focus:ring-primary/20 ${error ? "border-destructive focus:border-destructive" : ""
                       }`}
                     disabled={isLoading}
                   />
                   {error && (
-                    <p className="text-destructive text-sm mt-1 ml-1">{error}</p>
+                    <p className="text-destructive text-sm mt-1 ml-1 text-left">{error}</p>
                   )}
                 </div>
 
-                {/* Honeypot field */}
                 <input
                   type="text"
                   name="policy_agree"
@@ -147,24 +128,24 @@ const WaitlistForm = () => {
                 <Button
                   type="submit"
                   size="lg"
-                  className="h-14 px-8 text-base shadow-glow"
+                  className="h-14 w-full text-base font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all"
                   disabled={isLoading}
                 >
-                  {isLoading ? "Отправка..." : "Вступить в лист ожидания"}
+                  {isLoading ? "Отправка..." : "Получить ранний доступ"}
                 </Button>
               </div>
-              <p className="text-sm text-muted-foreground text-center">
-                Никакого спама. Одно письмо о запуске и несколько вопросов по делу.
+              <p className="text-xs text-muted-foreground text-center mt-4">
+                Никакого спама. Одно письмо о запуске и возможность отписаться в любой момент.
               </p>
             </form>
           ) : (
             <div className="text-center py-8">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <Check className="w-8 h-8 text-primary" />
+              <div className="w-20 h-20 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-6 animate-in zoom-in spin-in-12 duration-500">
+                <Check className="w-10 h-10 text-green-600" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Готово!</h3>
-              <p className="text-muted-foreground">
-                Если это твой email - проверь почту. Мы отправили письмо для подтверждения.
+              <h3 className="text-2xl font-bold text-foreground mb-3">Готово!</h3>
+              <p className="text-muted-foreground max-w-sm mx-auto">
+                Мы отправили подтверждение. Проверь почту (и папку спам, на всякий случай).
               </p>
             </div>
           )}
