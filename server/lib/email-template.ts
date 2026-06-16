@@ -1,10 +1,13 @@
-export const getConfirmationEmailHtml = (confirmUrl: string) => {
+import { EMAIL_COPY, type EmailLanguage } from "./email-translations";
+
+export const getConfirmationEmailHtml = (confirmUrl: string, lang: EmailLanguage = "ru") => {
+    const copy = EMAIL_COPY[lang];
     const primaryColor = '#22c55e'; // Matching the primary color 154 47% 41% approx or the standard green
     const logoUrl = 'https://dtg.sportomatics.com/logo.png';
 
     return `
     <!DOCTYPE html>
-    <html lang="ru">
+    <html lang="${lang}" dir="${copy.dir}">
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,17 +78,17 @@ export const getConfirmationEmailHtml = (confirmUrl: string) => {
       <div class="container">
         <div class="header">
           <img src="${logoUrl}" alt="DTG Studio" class="logo">
-          <h2>Добро пожаловать в DTG Studio!</h2>
+          <h2>${copy.title}</h2>
         </div>
         <div class="content">
-          <p>Спасибо за интерес к нашему проекту. Пожалуйста, подтвердите вашу почту, чтобы получить ссылку на страницу регистрации.</p>
+          <p>${copy.body}</p>
           <div style="text-align: center; margin: 32px 0;">
-            <a href="${confirmUrl}" class="button">Подтвердить почту</a>
+            <a href="${confirmUrl}" class="button">${copy.button}</a>
           </div>
-          <p style="font-size: 14px; color: #64748b;">Если вы не оставляли заявку на нашем сайте, просто проигнорируйте это письмо.</p>
+          <p style="font-size: 14px; color: #64748b;">${copy.disclaimer}</p>
         </div>
         <div class="footer">
-          <p>&copy; ${new Date().getFullYear()} DTG Studio. Все права защищены.</p>
+          <p>&copy; ${new Date().getFullYear()} DTG Studio. ${copy.rights}</p>
         </div>
       </div>
     </body>

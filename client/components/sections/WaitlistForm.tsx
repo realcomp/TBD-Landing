@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import { useTranslation } from "@/lib/i18n/client";
 
 export function WaitlistForm() {
-    const { t } = useTranslation();
+    const { t, lang } = useTranslation();
     const [email, setEmail] = useState("");
     const [policyAgree, setPolicyAgree] = useState(""); // Honeypot
     const [isLoading, setIsLoading] = useState(false);
@@ -22,6 +22,7 @@ export function WaitlistForm() {
                 body: JSON.stringify({
                     email: email.trim().toLowerCase(),
                     policyAgree,
+                    lang,
                 }),
             });
 

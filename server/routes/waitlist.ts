@@ -2,11 +2,13 @@ import { RequestHandler } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { supabase } from "../lib/supabase";
 import { resend, FROM_EMAIL } from "../lib/resend";
+import { isSupportedEmailLanguage, type EmailLanguage } from "../lib/email-translations";
 
 export const handleWaitlist: RequestHandler = async (req, res) => {
-    const { email, policyAgree } = req.body;
+    const { email, policyAgree, lang } = req.body;
     const ip = req.ip || req.headers["x-forwarded-for"] || "unknown";
     const userAgent = req.headers["user-agent"] || "unknown";
+    const language: EmailLanguage = isSupportedEmailLanguage(lang) ? lang : "ru";
 
     // Sanitize email
     const sanitizedEmail = email?.trim().toLowerCase();
@@ -70,7 +72,7 @@ export const handleWaitlist: RequestHandler = async (req, res) => {
                         })
                         .eq("id", existing.id);
 
-                    await sendConfirmationEmail(sanitizedEmail, newToken);
+                    await sendConfirmationEmail(sanitizedEmail, newToken, language);
                 }
                 return res.json({ ok: true, message: "Confirmation resent if needed" });
             }
@@ -88,7 +90,7 @@ export const handleWaitlist: RequestHandler = async (req, res) => {
 
         if (insertError) throw insertError;
 
-        await sendConfirmationEmail(sanitizedEmail, token);
+        await sendConfirmationEmail(sanitizedEmail, token, language);
 
         return res.json({ ok: true });
     } catch (error) {
@@ -136,15 +138,16 @@ export const handleConfirm: RequestHandler = async (req, res) => {
 };
 
 import { getConfirmationEmailHtml } from "../lib/email-template";
+import { EMAIL_COPY } from "../lib/email-translations";
 
-async function sendConfirmationEmail(email: string, token: string) {
+async function sendConfirmationEmail(email: string, token: string, language: EmailLanguage) {
     const appUrl = process.env.VITE_APP_URL || process.env.APP_URL || 'https://dtg.sportomatics.com';
     const confirmUrl = `${appUrl}/api/waitlist/confirm?token=${token}`;
 
     await resend.emails.send({
         from: FROM_EMAIL,
         to: email,
-        subject: "Подтвердите вашу почту - DTG Studio",
-        html: getConfirmationEmailHtml(confirmUrl),
+        subject: EMAIL_COPY[language].subject,
+        html: getConfirmationEmailHtml(confirmUrl, language),
     });
 }
