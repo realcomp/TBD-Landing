@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { supabase } from "../lib/supabase";
 import { resend, FROM_EMAIL } from "../lib/resend";
 import { isSupportedEmailLanguage, type EmailLanguage } from "../lib/email-translations";
+import { notifyAdminNewSignup, notifyAdminEmailConfirmed } from "../lib/admin-notifications";
 
 export const handleWaitlist: RequestHandler = async (req, res) => {
     const { email, policyAgree, lang } = req.body;
@@ -92,6 +93,8 @@ export const handleWaitlist: RequestHandler = async (req, res) => {
 
         await sendConfirmationEmail(sanitizedEmail, token, language);
 
+        notifyAdminNewSignup({ email: sanitizedEmail, language, ip: String(ip), userAgent: String(userAgent) });
+
         return res.json({ ok: true });
     } catch (error) {
         console.error("Waitlist error:", error);
@@ -127,10 +130,11 @@ export const handleConfirm: RequestHandler = async (req, res) => {
                 .eq("id", entry.id);
 
             if (updateError) throw updateError;
+
+            notifyAdminEmailConfirmed({ email: entry.email });
         }
 
-        // Redirect to main page
-        res.redirect("/");
+        res.redirect("https://dtg.sportomatics.com/login?redirect=%2Finbox");
     } catch (error) {
         console.error("Confirmation error:", error);
         res.status(500).send("Internal server error");
