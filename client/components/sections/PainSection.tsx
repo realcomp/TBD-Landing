@@ -27,11 +27,11 @@ export function PainSection() {
                             key={idx}
                             className="group bg-card border border-border rounded-3xl p-8 transition-all duration-300 hover:shadow-lg hover:border-primary/20"
                         >
-                            <div className="flex gap-4 items-start">
-                                <div className="flex-shrink-0 inline-flex p-3 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                            <div className="flex flex-row sm:flex-col gap-4 sm:gap-0 items-start">
+                                <div className="flex-shrink-0 inline-flex p-3 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300 sm:mb-6">
                                     {pain.icon}
                                 </div>
-                                <p className="text-lg font-medium leading-relaxed text-foreground pt-1">
+                                <p className="text-lg font-medium leading-relaxed text-foreground pt-1 sm:pt-0">
                                     {t(pain.textKey)}
                                 </p>
                             </div>

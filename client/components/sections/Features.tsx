@@ -31,12 +31,12 @@ export function Features() {
                             key={idx}
                             className="group bg-card border border-border rounded-3xl p-8 transition-all duration-300 hover:shadow-lg hover:border-primary/20"
                         >
-                            <div className="flex gap-4 items-start">
-                                <div className="flex-shrink-0 inline-flex p-3 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                            <div className="flex flex-row sm:flex-col gap-4 sm:gap-0 items-start">
+                                <div className="flex-shrink-0 inline-flex p-3 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300 sm:mb-6">
                                     {feature.icon}
                                 </div>
-                                <div className="pt-1">
-                                    <h3 className="text-xl font-bold mb-2">{t(feature.titleKey)}</h3>
+                                <div className="pt-1 sm:pt-0">
+                                    <h3 className="text-xl font-bold mb-2 sm:mb-3">{t(feature.titleKey)}</h3>
                                     <p className="text-muted-foreground leading-relaxed">
                                         {t(feature.descKey)}
                                     </p>
