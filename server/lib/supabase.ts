@@ -1,4 +1,5 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import ws from 'ws';
 
 let supabaseInstance: SupabaseClient | null = null;
 
@@ -13,7 +14,11 @@ export const supabase = {
             throw new Error('Supabase credentials missing in environment variables (checked VITE_SUPABASE_URL/SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY/VITE_SUPABASE_SERVICE_ROLE_KEY)');
         }
 
-        supabaseInstance = createClient(supabaseUrl, supabaseServiceKey);
+        supabaseInstance = createClient(supabaseUrl, supabaseServiceKey, {
+            realtime: {
+                transport: ws as any,
+            },
+        });
         return supabaseInstance;
     },
 
