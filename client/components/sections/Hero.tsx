@@ -1,10 +1,13 @@
 import { CheckCircle } from "lucide-react";
+import { useTranslation } from "@/lib/i18n/client";
 
 interface HeroProps {
     scrollToSection: (sectionId: string) => void;
 }
 
 export function Hero({ scrollToSection }: HeroProps) {
+    const { t } = useTranslation();
+
     return (
         <section id="hero" className="bg-background">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
@@ -12,37 +15,26 @@ export function Hero({ scrollToSection }: HeroProps) {
                     {/* Left Column */}
                     <div>
                         <h1 className="text-4xl sm:text-5xl font-bold leading-tight mb-6">
-                            Перестань планировать день и чувствовать провал к вечеру
+                            {t("hero.title")}
                         </h1>
                         <div className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                            <p className="mb-4">
-                                Каждое утро план из пяти задач, к вечеру сделаны всего две и есть чувство вины.
-                                DTG Studio помогает разобрать завал за пару часов и дальше выбирать, что реально сделать прямо сейчас.
-                            </p>
-                            <p>
-                                Закрыл одну задачу - уже прогресс. Не закрыл - не провал, плана не было.
-                            </p>
+                            <p className="mb-4">{t("hero.desc1")}</p>
+                            <p>{t("hero.desc2")}</p>
                         </div>
 
                         {/* Benefits */}
                         <ul className="space-y-4 mb-8">
                             <li className="flex gap-3">
                                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
-                                <span className="text-foreground">
-                                    Список готовых действий вместо ежедневного планирования
-                                </span>
+                                <span className="text-foreground">{t("hero.benefit1")}</span>
                             </li>
                             <li className="flex gap-3">
                                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
-                                <span className="text-foreground">
-                                    Реальные дедлайны отдельно, без красной свалки просроченного
-                                </span>
+                                <span className="text-foreground">{t("hero.benefit2")}</span>
                             </li>
                             <li className="flex gap-3">
                                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
-                                <span className="text-foreground">
-                                    Гибкость выбора вместо чувства вины
-                                </span>
+                                <span className="text-foreground">{t("hero.benefit3")}</span>
                             </li>
                         </ul>
 
@@ -52,13 +44,13 @@ export function Hero({ scrollToSection }: HeroProps) {
                                 onClick={() => scrollToSection("how")}
                                 className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition"
                             >
-                                Посмотреть как работает
+                                {t("hero.cta_how")}
                             </button>
                             <button
                                 onClick={() => scrollToSection("access")}
                                 className="inline-flex items-center justify-center rounded-full border border-primary/35 px-6 py-3 text-sm font-medium text-primary hover:bg-primary/10 transition"
                             >
-                                Вступить в лист ожидания
+                                {t("hero.cta_join")}
                             </button>
                         </div>
                     </div>

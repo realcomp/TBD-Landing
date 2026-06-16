@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { toast } from "sonner";
+import { useTranslation } from "@/lib/i18n/client";
 
 export function WaitlistForm() {
+    const { t } = useTranslation();
     const [email, setEmail] = useState("");
     const [policyAgree, setPolicyAgree] = useState(""); // Honeypot
     const [isLoading, setIsLoading] = useState(false);
@@ -27,14 +29,14 @@ export function WaitlistForm() {
 
             if (data.ok) {
                 setIsSuccess(true);
-                toast.success("Готово! Проверьте почту для подтверждения.");
+                toast.success(t("waitlist.toast_success"));
                 setEmail("");
             } else {
-                toast.error(data.message || "Произошла ошибка. Попробуйте еще раз.");
+                toast.error(data.message || t("waitlist.toast_error_default"));
             }
         } catch (error) {
             console.error("Submission error:", error);
-            toast.error("Сетевая ошибка. Пожалуйста, проверьте соединение.");
+            toast.error(t("waitlist.toast_error_network"));
         } finally {
             setIsLoading(false);
         }
@@ -43,10 +45,11 @@ export function WaitlistForm() {
     if (isSuccess) {
         return (
             <div className="text-center p-6 bg-primary/5 rounded-2xl border border-primary/20 animate-in fade-in zoom-in duration-300">
-                <h3 className="text-xl font-bold mb-2 text-primary">Почти готово!</h3>
+                <h3 className="text-xl font-bold mb-2 text-primary">{t("waitlist.success_title")}</h3>
                 <p className="text-muted-foreground">
-                    Мы отправили письмо с подтверждением на {email || 'вашу почту'}.
-                    Пожалуйста, перейдите по ссылке в письме, чтобы занять свое место в очереди.
+                    {t("waitlist.success_sent_prefix")}{" "}
+                    <strong>{email || "…"}</strong>.{" "}
+                    {t("waitlist.success_sent_suffix")}
                 </p>
             </div>
         );
@@ -90,16 +93,16 @@ export function WaitlistForm() {
                                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                             </svg>
-                            Отправка...
+                            {t("waitlist.submitting")}
                         </span>
                     ) : (
-                        "Вступить в лист ожидания"
+                        t("waitlist.submit")
                     )}
                 </button>
             </form>
 
             <p className="text-center text-xs text-muted-foreground mt-4">
-                Никакого спама. Только приглашение в бета-доступ.
+                {t("waitlist.no_spam")}
             </p>
         </div>
     );
